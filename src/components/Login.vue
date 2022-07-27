@@ -2,8 +2,19 @@
 import { ref } from "vue";
 import axios from "axios";
 import qs from "qs";
+import { computed } from "@vue/reactivity";
+import { useStore } from "vuex";
+
 defineProps<{ msg: string }>();
-let username = "TESTNAME";
+
+const store = useStore();
+
+let name = "aaa";
+
+const username = computed(() => {
+  return store.state.user.name;
+});
+
 const email = ref("frank@gmail.com");
 const password = ref("1234qwer");
 // const API_URL = "http://127.0.0.1:5000";
@@ -35,9 +46,10 @@ function whoami() {
   axios
     .get(url, { withCredentials: true })
     .then((res) => {
-      console.log('!!before',username);
-      username = res.data.username;
-      console.log('!!after',username);
+      console.log("!!before", username);
+      name = res.data.username;
+      store.dispatch("saveName", res.data.username);
+      console.log("!!after", username);
       console.log(res.data);
     })
     .catch((err) => {

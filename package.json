@@ -12,7 +12,8 @@
     "axios": "^0.27.2",
     "qs": "^6.11.0",
     "vue": "^3.2.37",
-    "vue-cookies": "^1.8.1"
+    "vue-cookies": "^1.8.1",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/qs": "^6.9.7",
