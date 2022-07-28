@@ -9,8 +9,6 @@ defineProps<{ msg: string }>();
 
 const store = useStore();
 
-let name = "aaa";
-
 const username = computed(() => {
   return store.state.user.name;
 });
@@ -35,9 +33,10 @@ function submit(replaceEmail?: string) {
   };
   axios(options)
     .then((res) => {
-      console.log(res.data);
+      whoami();
     })
     .catch((err) => {
+      store.dispatch("saveName", "Unknown");
       console.warn(err);
     });
 }
@@ -46,11 +45,7 @@ function whoami() {
   axios
     .get(url, { withCredentials: true })
     .then((res) => {
-      console.log("!!before", username);
-      name = res.data.username;
       store.dispatch("saveName", res.data.username);
-      console.log("!!after", username);
-      console.log(res.data);
     })
     .catch((err) => {
       console.warn(err);
@@ -81,7 +76,7 @@ function getStudents() {
     <button type="button" @click="submit('nick@gmail.com')">
       Submit as Nick
     </button>
-    <button type="button" @click="whoami">LoginDetail</button>
+    <!-- <button type="button" @click="whoami">LoginDetail</button> -->
     <button type="button" @click="getStudents">Student</button>
   </div>
 </template>
