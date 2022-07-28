@@ -7,22 +7,23 @@ import { useStore } from "vuex";
 
 defineProps<{ msg: string }>();
 
+// Store properties
 const store = useStore();
-
 const username = computed(() => {
   return store.state.user.name;
 });
 
+// Component properties
 const email = ref("frank@gmail.com");
 const password = ref("1234qwer");
 // const API_URL = "http://127.0.0.1:5000";
 const API_URL = "https://franklam2008.pythonanywhere.com";
 
-whoami();
+// Service calls
 function submit(replaceEmail?: string) {
   const url = `${API_URL}/login`;
   const data = { email: replaceEmail || email.value, password: password.value };
-  const options = {
+  const requestConfig = {
     method: "POST",
     headers: {
       "content-type": "application/x-www-form-urlencoded",
@@ -31,7 +32,7 @@ function submit(replaceEmail?: string) {
     url,
     withCredentials: true,
   };
-  axios(options)
+  axios(requestConfig)
     .then((res) => {
       whoami();
     })
@@ -62,6 +63,9 @@ function getStudents() {
       console.warn(err);
     });
 }
+
+// component on init
+whoami();
 </script>
 
 <template>
