@@ -16,8 +16,8 @@ const username = computed(() => {
 // Component properties
 const email = ref("frank@gmail.com");
 const password = ref("1234qwer");
-// const API_URL = "http://127.0.0.1:5000";
-const API_URL = "https://franklam2008.pythonanywhere.com";
+const API_URL = "http://127.0.0.1:5000";
+// const API_URL = "https://franklam2008.pythonanywhere.com";
 
 // Service calls
 function submit(replaceEmail?: string) {
