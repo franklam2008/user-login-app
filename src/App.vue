@@ -6,7 +6,7 @@ import TestComponent from "./components/test.vue";
 </script>
 
 <template>
-  <TestComponent />
+  <!-- <TestComponent /> -->
   <Login msg="User Login with JWT" />
 </template>
 

@@ -69,19 +69,13 @@ whoami();
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <h2>{{ msg }}</h2>
   <p>Logged in as: {{ username }}</p>
   <div class="form-group">
-    <p>Email:{{ email }}</p>
     <input v-model="email" placeholder="edit me" />
-    <p>Password:{{ password }}</p>
     <input v-model="password" type="password" placeholder="edit me" />
     <button type="button" @click="submit()">Submit</button>
-    <button type="button" @click="submit('nick@gmail.com')">
-      Submit as Nick
-    </button>
-    <!-- <button type="button" @click="whoami">LoginDetail</button> -->
-    <button type="button" @click="getStudents">Student</button>
+    <button type="button" @click="getStudents">Student list</button>
   </div>
 </template>
 
