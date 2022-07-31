@@ -21,7 +21,7 @@ const API_URL = "http://127.0.0.1:5000";
 
 // Service calls
 function submit(replaceEmail?: string) {
-  const url = `${API_URL}/login`;
+  const url = `${API_URL}/login/`;
   const data = { email: replaceEmail || email.value, password: password.value };
   const requestConfig = {
     method: "POST",
@@ -42,7 +42,7 @@ function submit(replaceEmail?: string) {
     });
 }
 function whoami() {
-  const url = `${API_URL}/whoami`;
+  const url = `${API_URL}/whoami/`;
   axios
     .get(url, { withCredentials: true })
     .then((res) => {
@@ -53,7 +53,7 @@ function whoami() {
     });
 }
 function getStudents() {
-  const url = `${API_URL}/students`;
+  const url = `${API_URL}/students/`;
   axios
     .get(url, { withCredentials: true })
     .then((res) => {
