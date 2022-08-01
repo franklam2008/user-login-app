@@ -47,6 +47,7 @@ function whoami() {
     .get(url, { withCredentials: true })
     .then((res) => {
       store.dispatch("saveName", res.data.username);
+      store.dispatch("loadedUser", res.data);
     })
     .catch((err) => {
       console.warn(err);

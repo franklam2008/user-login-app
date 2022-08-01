@@ -9,15 +9,17 @@ import { computed } from "@vue/reactivity";
 
 // Store properties
 const store = useStore();
-const username = computed(() => {
-  return store.state.user.name;
+const user_detail = computed(() => {
+  return store.state.user.detail;
 });
+
 </script>
 
 <template>
   <!-- <TestComponent /> -->
-  <Login msg="User Login with JWT" />
-  <Home />
+  <Login v-if="!user_detail" msg="User Login with JWT" />
+  <Home v-if="user_detail"/>
+  <p>Logged in as: {{ user_detail }}</p>
 </template>
 
 <style scoped>
