@@ -17,9 +17,7 @@ const user_detail = computed(() => {
 
 <template>
   <!-- <TestComponent /> -->
-  <Login v-if="!user_detail" msg="User Login with JWT" />
-  <Home v-if="user_detail"/>
-  <p>Logged in as: {{ user_detail }}</p>
+ <component :is="user_detail ? Home : Login" />
 </template>
 
 <style scoped>

@@ -5,7 +5,7 @@ import qs from "qs";
 import { computed } from "@vue/reactivity";
 import { useStore } from "vuex";
 
-defineProps<{ msg: string }>();
+// defineProps<{ msg: string }>();
 
 // Store properties
 const store = useStore();
@@ -42,6 +42,7 @@ function submit(replaceEmail?: string) {
     });
 }
 function whoami() {
+      console.log('!!whoami');
   const url = `${API_URL}/whoami/`;
   axios
     .get(url, { withCredentials: true })
@@ -70,7 +71,7 @@ whoami();
 </script>
 
 <template>
-  <h2>{{ msg }}</h2>
+  <h2>User Login with JWT</h2>
   <p>Logged in as: {{ username }}</p>
   <div class="form-group">
     <input v-model="email" placeholder="edit me" />
