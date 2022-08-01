@@ -16,8 +16,9 @@ const username = computed(() => {
 // Component properties
 const email = ref("frank@gmail.com");
 const password = ref("1234qwer");
-const API_URL = "http://127.0.0.1:5000";
-// const API_URL = "https://franklam2008.pythonanywhere.com";
+const env = import.meta.env
+const API_URL = env.VITE_STUDENT_API_URL_LOCAL;
+// const API_URL = env.VITE_STUDENT_API_URL_PROD;
 
 // Service calls
 function submit(replaceEmail?: string) {
@@ -42,24 +43,12 @@ function submit(replaceEmail?: string) {
     });
 }
 function whoami() {
-      console.log('!!whoami');
   const url = `${API_URL}/whoami/`;
   axios
     .get(url, { withCredentials: true })
     .then((res) => {
       store.dispatch("saveName", res.data.username);
       store.dispatch("loadedUser", res.data);
-    })
-    .catch((err) => {
-      console.warn(err);
-    });
-}
-function getStudents() {
-  const url = `${API_URL}/students/`;
-  axios
-    .get(url, { withCredentials: true })
-    .then((res) => {
-      console.log(res.data);
     })
     .catch((err) => {
       console.warn(err);
@@ -77,7 +66,6 @@ whoami();
     <input v-model="email" placeholder="edit me" />
     <input v-model="password" type="password" placeholder="edit me" />
     <button type="button" @click="submit()">Submit</button>
-    <button type="button" @click="getStudents">Student list</button>
   </div>
 </template>
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import qs from "qs";
 import axios from "axios";
 import { useStore } from "vuex";
@@ -7,9 +8,14 @@ const store = useStore();
 const user_detail = computed(() => {
   return store.state.user.detail;
 });
+const student_list = computed(() => {
+  return store.state.user.student_list;
+});
+const env = import.meta.env;
+const API_URL = env.VITE_STUDENT_API_URL_LOCAL;
+// const API_URL = env.VITE_STUDENT_API_URL_PROD;
 
 function logout(replaceEmail?: string) {
-  const API_URL = "http://127.0.0.1:5000";
   const url = `${API_URL}/login/`;
   const data = { email: "", password: "" };
   const requestConfig = {
@@ -27,9 +33,22 @@ function logout(replaceEmail?: string) {
     console.warn(err);
   });
 }
+function getStudents() {
+  const url = `${API_URL}/students/`;
+  axios
+    .get(url, { withCredentials: true })
+    .then((res) => {
+      store.dispatch("loadedStudentList", res.data);
+    })
+    .catch((err) => {
+      console.warn(err);
+    });
+}
 </script>
 
 <template>
   <p>Logged in as: {{ user_detail }}</p>
   <button @click="logout">logout</button>
+  <button type="button" @click="getStudents">Student list</button>
+  <div>{{ student_list }}</div>
 </template>
