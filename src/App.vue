@@ -1,13 +1,23 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import Login from "./components/Login.vue";
+import Login from "./pages/login.vue";
+import Home from "./pages/home.vue";
 import TestComponent from "./components/test.vue";
+import { useStore } from "vuex";
+import { computed } from "@vue/reactivity";
+
+// Store properties
+const store = useStore();
+const username = computed(() => {
+  return store.state.user.name;
+});
 </script>
 
 <template>
   <!-- <TestComponent /> -->
   <Login msg="User Login with JWT" />
+  <Home />
 </template>
 
 <style scoped>
