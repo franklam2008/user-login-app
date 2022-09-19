@@ -9,16 +9,14 @@ import { useStore } from "vuex";
 
 // Store properties
 const store = useStore();
-const username = computed(() => {
-  return store.state.user.name;
-});
+const username = computed(() => store.state.user.name);
 
 // Component properties
 const email = ref("frank@gmail.com");
 const password = ref("1234qwer");
-const env = import.meta.env
-const API_URL = env.VITE_STUDENT_API_URL_LOCAL;
-// const API_URL = env.VITE_STUDENT_API_URL_PROD;
+const env = import.meta.env;
+// const API_URL = env.VITE_STUDENT_API_URL_LOCAL;
+const API_URL = env.VITE_STUDENT_API_URL_PROD;
 
 // Service calls
 function submit(replaceEmail?: string) {

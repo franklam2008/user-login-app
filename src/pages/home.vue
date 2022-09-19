@@ -12,8 +12,8 @@ const student_list = computed(() => {
   return store.state.user.student_list;
 });
 const env = import.meta.env;
-const API_URL = env.VITE_STUDENT_API_URL_LOCAL;
-// const API_URL = env.VITE_STUDENT_API_URL_PROD;
+// const API_URL = env.VITE_STUDENT_API_URL_LOCAL;
+const API_URL = env.VITE_STUDENT_API_URL_PROD;
 
 function logout(replaceEmail?: string) {
   const url = `${API_URL}/login/`;
@@ -47,8 +47,16 @@ function getStudents() {
 </script>
 
 <template>
-  <p>Logged in as: {{ user_detail }}</p>
-  <button @click="logout">logout</button>
+  <p>Logged in as: {{ user_detail?.username }}</p>
+  <p>Detail: {{ user_detail }}</p>
+
+  <div v-if="student_list?.length">
+    <li v-for="stu in student_list">
+      {{ stu }}
+    </li>
+  </div>
+
+  <button @click="logout()">logout</button>
   <button type="button" @click="getStudents">Student list</button>
-  <div>{{ student_list }}</div>
+
 </template>
