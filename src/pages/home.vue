@@ -47,16 +47,20 @@ function getStudents() {
 </script>
 
 <template>
-  <p>Logged in as: {{ user_detail?.username }}</p>
-  <p>Detail: {{ user_detail }}</p>
+  <div style="background-color: red">
+    <h1 class="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+    <p>Logged in as: {{ user_detail?.username }}</p>
+    <p>Detail: {{ user_detail }}</p>
 
-  <div v-if="student_list?.length">
-    <li v-for="stu in student_list">
-      {{ stu }}
-    </li>
+    <div class="bg-gray-300" v-if="student_list?.length">
+      <li v-for="stu in student_list">
+        {{ stu }}
+      </li>
+    </div>
+
+    <button @click="logout()">logout</button>
+    <button type="button" @click="getStudents">Student list</button>
   </div>
-
-  <button @click="logout()">logout</button>
-  <button type="button" @click="getStudents">Student list</button>
-
 </template>
