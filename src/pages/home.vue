@@ -47,12 +47,10 @@ function getStudents() {
 </script>
 
 <template>
-  <div style="background-color: red">
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+  <div>
+    <h1 class="text-3xl font-bold underline">Hello world!</h1>
     <p>Logged in as: {{ user_detail?.username }}</p>
-    <p>Detail: {{ user_detail }}</p>
+    <p class="p-64">Detail: {{ user_detail }}</p>
 
     <div class="bg-gray-300" v-if="student_list?.length">
       <li v-for="stu in student_list">
